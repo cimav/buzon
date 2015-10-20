@@ -1,0 +1,69 @@
+<div class="container post-container">
+  <div class="post-index">
+    {{#each content as |item|}}
+      <div class="row post-index-item">
+        <div class="col-sm-8 post-index-content">
+          <span class="post-id">{{item.id}}</span><span class="post-type {{item.post_type}}">{{item.post_type}}</span>
+          {{#link-to 'post' item tagName="div" classNames="post-index-data"}}
+            <h2 class="post-index-title">{{item.subject}}</h2>
+            <div class="post-index-group">Dirigido a: {{item.group.name}}</div>
+            <div class="post-index-body">{{item.body}}</div>
+          {{/link-to}}
+          {{#if item.responses}}
+            <div class="post-index-responses">
+              <h3>Respuestas</h3>
+              {{#each item.responses as |item_response|}}
+                <div class="post-item-response">
+                  <table>
+                    <tr>
+                      <td class="post-index-picture"><img src={{item_response.user.picture_url}} title={{item_response.user.full_name}} class="img-circle"></td>
+                      <td>
+                        <div class="post-item-response-author">
+                          <a href="#">{{item_response.user.full_name}}</a><br/>
+                          {{item_response.formatted_date}}
+                        </div>
+                        <div class="post-item-response-body">
+                          {{item_response.body}}
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              {{/each}}
+            </div>
+          {{/if}}
+        </div>
+        <div class="col-sm-4 post-index-extra">
+          <div class="post-index-author">
+            <table>
+              <tr>
+                <td class="post-index-picture"><img src={{item.user.picture_url}} title={{item.user.full_name}} class="img-circle"></td>
+                <td>
+                  <a href="#">{{item.user.full_name}}</a><br/>
+                  {{item.formatted_date}}
+                </td>
+              </tr>
+            </table>
+          </div>
+          {{#if item.users}}
+            <div class="post-index-supporters">
+              <div class="post-index-supporters-title">{{item.supporters_count}} personas apoyan esta {{item.post_type}}:</div>
+              {{#each item.users as |item_supporter|}}
+                <img src={{item_supporter.picture_url}} title={{item_supporter.full_name}} class="img-circle">
+              {{/each}}
+            </div>
+          {{/if}}
+
+            <div class="post-index-comments-title"><span class="glyphicon glyphicon-comment"></span> {{item.comments_count}} comentarios</div>
+          
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    {{/each}}
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      {{page-numbers content=content}}
+    </div>
+  </div>
+</div>

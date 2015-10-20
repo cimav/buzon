@@ -1,0 +1,20 @@
+{{#if session.isAuthenticated}}
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+         {{#link-to 'posts' classNames="navbar-brand"}}Buzón de sugerencias, quejas y denuncias{{/link-to}}
+      </div>
+      <div class="collapse navbar-collapse">
+        <p class="navbar-text navbar-right">
+          <span class="login-info">
+            <img src="{{session.account.picture_url}}" class="img-circle" title="{{session.account.full_name}}">
+          </span>
+          {{#link-to 'posts.new' classNames="btn btn-success"}}Enviar nueva{{/link-to}}
+          <button {{ action 'invalidateSession' }} class="btn btn-default">Salir</button>
+        </p>
+      </div>
+    </div>
+  </nav>
+{{/if}}
+
+{{outlet}}

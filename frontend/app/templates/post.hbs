@@ -1,0 +1,126 @@
+<div class="container post-container">
+  <div class="post-single">
+    <div class="row post-single-header">
+      <div class="col-sm-8">
+        <table>
+          <tr>
+            <td class="post-index-picture"><img src={{content.user.picture_url}} title={{content.user.full_name}} class="img-circle"></td>
+            <td>
+              <a href="#">{{content.user.full_name}}</a><br/>
+              {{content.formatted_date}}
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-2 post-single-counter">
+        <span class="glyphicon glyphicon-heart"></span>
+        <span title="Apoyan esta {{content.post_type}}">{{content.supporters_count}}</span>
+      </div>
+      <div class="col-sm-2 post-single-counter">
+        <span class="glyphicon glyphicon-comment"></span>
+        <span title="Comentarios">{{content.comments_count}}</span>
+      </div>
+    </div>
+    <div class="row post-single-workarea">
+      <div class="col-sm-8 post-single-main">
+        <span class="post-id">{{content.id}}</span><span class="post-type {{content.post_type}}">{{content.post_type}}</span>
+        
+        <h1 class="post-single-title">{{content.subject}}</h1>
+        <div class="post-single-group">Dirigido a: {{content.group.name}}</div>
+        <div class="post-single-body">
+          {{content.body}}
+        </div>
+       
+        {{#if content.responses}}
+          <h2>Respuestas</h2>
+          {{#each content.responses as |response|}}
+            <div class="post-single-response">
+              <table>
+                <tr>
+                  <td class="post-index-picture"><img src={{response.user.picture_url}} title={{response.user.full_name}} class="img-circle"></td>
+                  <td>
+                    <div class="post-single-response-author">
+                      <a href="#">{{response.user.full_name}}</a><br/>
+                      {{response.formatted_date}}
+                    </div>
+                    <div class="post-single-response-body">
+                      {{response.body}}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          {{/each}}
+        {{/if}}
+
+        {{#if currentUserCanAnswerThis}}
+          <div class="post-single-comment-form">
+            <table class="table">
+              <tr>
+                <td class="post-index-picture"><img src={{session.account.picture_url}} class="img-circle"></td>
+                <td style="width: 96%;">
+                  <strong>Responder:</strong>
+                  {{textarea value=newResponse.body rows="3" classNames="form-control"}}<br/>
+                  <button class="btn btn-success text-right" {{action 'addNewResponse'}}>Enviar respuesta</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        {{/if}}
+
+        {{#if showComments}}
+          <h2>Aportaciones a la {{content.post_type}}</h2>
+          {{#each content.comments as |comment|}}
+            <div class="post-single-comment">
+              <table>
+                <tr>
+                  <td class="post-index-picture"><img src={{comment.user.picture_url}} title={{comment.user.full_name}} class="img-circle"></td>
+                  <td>
+                    <div class="post-single-comment-body" title="Escrito por {{comment.user.full_name}} el {{comment.formatted_date}}">
+                      <a href="#">{{comment.user.full_name}}</a> — {{comment.formatted_date}}<br/> {{comment.body}}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          {{/each}}
+          {{#if currentUserSupportThis}}
+            <div class="post-single-comment-form">
+              <table class="table">
+                <tr>
+                  <td class="post-index-picture"><img src={{session.account.picture_url}} class="img-circle"></td>
+                  <td style="width: 96%;">
+                    {{textarea value=newComment.body rows="3" classNames="form-control"}}<br/>
+                    <button class="btn btn-primary text-right" {{action 'addNewComment'}}>Enviar aportación</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          {{/if}}
+        {{/if}}
+       
+        
+      </div>
+      <div class="col-sm-4 post-single-sidebar">
+        {{#unless currentUserSupportThis}}
+          <button class="btn btn-block support-btn" {{action 'support'}}>Deseo apoyar esta {{content.post_type}}</button>
+        {{/unless}}
+        {{#if content.users}}
+          <div class="post-single-supporters">
+            <div class="post-single-supporters-title">{{content.supporters_count}} personas apoyan esta {{content.post_type}}:</div>
+            <table>
+              {{#each content.users as |supporter|}}
+                <tr>
+                  <td><img src={{supporter.picture_url}} title={{supporter.full_name}} class="img-circle"></td>
+                  <td><a href="#">{{supporter.full_name}}</a></td>
+                </tr>
+              {{/each}}
+            </table>
+          </div>
+        {{else}}
+           <div class="post-single-supporters-empty">Aún no existen personas que apoyen esta  {{content.post_type}}</div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

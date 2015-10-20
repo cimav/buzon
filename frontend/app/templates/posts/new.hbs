@@ -1,0 +1,49 @@
+<div class="container post-container">
+  <div class="post-single post-new">
+
+    <div class="row post-single-header">
+      <div class="col-sm-8">
+        <table>
+          <tr>
+            <td class="post-index-picture"><img src={{session.account.picture_url}} class="img-circle"></td>
+            <td>
+              <a href="#">{{session.account.full_name}}</a><br/>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-4">
+        <div class="post-new-title">Nueva</div>
+      </div>
+    </div>
+        
+    <div class="row">
+      <div class="col-sm-4">
+        <label class="control-label">Tipo:</label> {{view "select" content=post_types value=model.post_type classNames="form-control"}}
+      </div>
+      <div class="col-sm-8">
+        <label class="control-label">Dirigida a:</label> {{view "select" contentBinding=groups optionValuePath="content.id" optionLabelPath="content.name" selectionBinding="model.group" classNames="form-control"}}
+      </div>
+    </div>
+    <div class="row post-new-subject">
+      <div class="col-sm-12">
+        <label class="control-label">Asunto:</label><br/>
+        {{input value=model.subject classNames="form-control"}}<br/>
+      </div>
+    </div>
+    <div class="row post-new-body">
+      <div class="col-sm-12">
+        <label class="control-label">Mi {{model.post_type}}:</label><br/>
+        {{textarea value=model.body rows="12" classNames="form-control"}}<br/>
+      </div>
+    </div>
+    <div class="row post-new-button">
+      <div class="col-sm-12">
+        <button class="btn btn-success text-right" {{action 'addNewPost'}}>Enviar nueva {{model.post_type}}</button>
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+{{outlet}}
