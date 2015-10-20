@@ -1,4 +1,4 @@
 == Backend
 
-Buzon Backend written in Ruby.
+Buzon Backend written in Ruby on Rails.
 
