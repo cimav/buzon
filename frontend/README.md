@@ -1,7 +1,6 @@
 # Frontend
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Buzon Frontend written in ember-cli.
 
 ## Prerequisites
 
@@ -15,19 +14,15 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone git@github.com:cimav/buzon.git` this repository
 * change into the new directory
 * `npm install`
 * `bower install`
 
 ## Running / Development
 
-* `ember server`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
+* `ember server -p 9000`
+* Visit your app at [http://localhost:4200](http://localhost:9000).
 
 ### Running Tests
 
