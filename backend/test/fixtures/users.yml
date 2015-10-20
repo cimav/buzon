@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group_id: 
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  reports_to: 1
+  start_date: 2015-10-12
+  end_date: 2015-10-12
+  status: 1
+
+two:
+  group_id: 
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  reports_to: 1
+  start_date: 2015-10-12
+  end_date: 2015-10-12
+  status: 1

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  name: MyString
+  short_name: MyString
+  is_department: false
+  status: 1
+
+two:
+  user_id: 
+  name: MyString
+  short_name: MyString
+  is_department: false
+  status: 1

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  group_id: 
+  post_type: MyString
+  subject: MyString
+  problem: MyText
+  suggestion: MyText
+  publish_date: 2015-10-12 08:43:47
+  status: 1
+
+two:
+  user_id: 
+  group_id: 
+  post_type: MyString
+  subject: MyString
+  problem: MyText
+  suggestion: MyText
+  publish_date: 2015-10-12 08:43:47
+  status: 1
