@@ -22,7 +22,7 @@ You will need the following things properly installed on your computer.
 ## Running / Development
 
 * `ember server -p 9000`
-* Visit your app at [http://localhost:4200](http://localhost:9000).
+* Visit your app at [http://localhost:9000](http://localhost:9000).
 
 ### Running Tests
 
