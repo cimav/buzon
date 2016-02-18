@@ -19,7 +19,14 @@
         
     <div class="row">
       <div class="col-sm-4">
-        <label class="control-label">Tipo:</label> {{view "select" content=post_types value=model.post_type classNames="form-control"}}
+        <label class="control-label">Tipo:</label> 
+        {{#x-select action="selectType" id="type-select" value=model.post_type class="form-control"}}
+           {{#each post_types as |post_type|}}
+            {{#x-option value=post_type}}
+              {{post_type}}
+            {{/x-option}}
+          {{/each}}
+        {{/x-select}}
       </div>
       <div class="col-sm-8">
         <label class="control-label">Dirigida a:</label> 
