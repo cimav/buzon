@@ -1,5 +1,5 @@
 <div class="container post-container">
-  <div class="post-single post-new">
+  <div class="post-single post-new" id="post-new-div">
 
     <div class="row post-single-header">
       <div class="col-sm-8">
@@ -22,19 +22,30 @@
         <label class="control-label">Tipo:</label> {{view "select" content=post_types value=model.post_type classNames="form-control"}}
       </div>
       <div class="col-sm-8">
-        <label class="control-label">Dirigida a:</label> {{view "select" contentBinding=groups optionValuePath="content.id" optionLabelPath="content.name" selectionBinding="model.group" classNames="form-control"}}
+        <label class="control-label">Dirigida a:</label> 
+        {{#x-select action="selectGroup" id="group-select" value=model.group class="form-control"}}
+          {{#x-option value="0"}}Selecciona un grupo{{/x-option}}
+          {{#each groups as |g|}}
+            {{#x-option value=g}}
+              {{g.name}}
+            {{/x-option}}
+          {{/each}}
+        {{/x-select}}
+        <div id="error-no-grupo" class="alert alert-danger" role="alert">Es necesario elegir un grupo</div>
       </div>
     </div>
     <div class="row post-new-subject">
       <div class="col-sm-12">
         <label class="control-label">Asunto:</label><br/>
         {{input value=model.subject classNames="form-control"}}<br/>
+        <div id="error-no-subject" class="alert alert-danger" role="alert">Es necesario proporcionar el asunto</div>
       </div>
     </div>
     <div class="row post-new-body">
       <div class="col-sm-12">
         <label class="control-label">Mi {{model.post_type}}:</label><br/>
         {{textarea value=model.body rows="12" classNames="form-control"}}<br/>
+        <div id="error-no-body" class="alert alert-danger" role="alert">Es necesario proporcionar detalles</div>
       </div>
     </div>
     <div class="row post-new-button">

@@ -5,6 +5,6 @@ export default DS.RESTAdapter.extend({
   headers: function() {
     return {
       "X-XSRF-TOKEN": decodeURIComponent(Ember.get(document.cookie.match(/XSRF\-TOKEN\=([^;]*)/), "1"))
-    }
+    };
   }.property().volatile()
 });

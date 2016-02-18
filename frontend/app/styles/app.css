@@ -333,3 +333,9 @@ body { padding-top: 90px; background: #eff0f1; }
 .post-new textarea {
   width: 100% !important;
 }
+
+#error-no-grupo, #error-no-subject, #error-no-body { 
+  margin: 0.5em;
+  display: none;
+  font-size: 90%;
+}
