@@ -45,6 +45,17 @@ body { padding-top: 90px; background: #eff0f1; }
   width: 100%;
   padding: 3px 16px;
   text-transform: uppercase;
+  margin: 0;
+}
+
+.post-closed {
+  background: #ddd;
+  color: #777;
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 3px 16px;
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .post-index-title {
@@ -334,8 +345,17 @@ body { padding-top: 90px; background: #eff0f1; }
   width: 100% !important;
 }
 
-#error-no-grupo, #error-no-subject, #error-no-body { 
+#error-no-grupo, #error-no-subject, #error-no-body, #error-no-respuesta, #error-no-aportacion { 
   margin: 0.5em;
   display: none;
-  font-size: 90%;
+  font-size: 90% !important;
+}
+
+.close-post {
+  margin: 1em 0;
+}
+
+.close-post-link {
+  font-size: 80%;
+  cursor: pointer;
 }

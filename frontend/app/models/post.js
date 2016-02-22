@@ -10,6 +10,7 @@ export default DS.Model.extend({
   subject: DS.attr('string'),
   body: DS.attr('string'),
   publish_date: DS.attr('string'),
+  status: DS.attr('number'),
   supporters_count: DS.attr('number'),
   comments_count: DS.attr('number'),
   formatted_date: function() {

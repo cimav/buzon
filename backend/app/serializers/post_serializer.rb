@@ -1,5 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :subject, :body, :post_type, :publish_date
+  attributes :id, :subject, :body, :post_type, :publish_date, :status
   has_one :user, embed: :ids, include: true
   has_one :group, embed: :ids, include: true
   has_many :users, embed: :ids, include: true

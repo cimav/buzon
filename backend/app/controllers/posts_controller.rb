@@ -15,6 +15,10 @@ class PostsController < ApplicationController
     render json: Post.find(params[:id])
   end
 
+  def update
+    render json: Post.find(params[:id]).tap { |b| b.update_attributes(post_params) }
+  end
+
   private
     def set_post
       @post = Post.find(params[:id])
