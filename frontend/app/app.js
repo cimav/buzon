@@ -17,6 +17,3 @@ App = Ember.Application.extend({
 loadInitializers(App, config.modulePrefix);
 
 export default App;
-
-moment.locale('es');
-alert(moment.locale());

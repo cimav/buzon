@@ -13,6 +13,7 @@ module.exports = function(defaults) {
   app.import(app.bowerDirectory + '/bootstrap/dist/css/bootstrap.css');
   app.import(app.bowerDirectory + '/bootstrap/dist/fonts/glyphicons-halflings-regular.woff', { destDir: 'fonts' });
   app.import(app.bowerDirectory + '/moment/moment.js')
+  app.import(app.bowerDirectory + '/moment/locale/es.js')
   app.import(app.bowerDirectory + '/jquery-ui/jquery-ui.js');
   app.import(app.bowerDirectory + '/jquery-ui/themes/smoothness/jquery-ui.min.css');
   
