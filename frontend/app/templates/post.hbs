@@ -49,12 +49,14 @@
                   <td class="post-index-picture"><img src={{comment.user.picture_url}} title={{comment.user.full_name}} class="img-circle"></td>
                   <td>
                     <div class="post-single-comment-body" title="Escrito por {{comment.user.full_name}} el {{comment.formatted_date}}">
-                      <a href="#">{{comment.user.full_name}}</a> — {{comment.formatted_date}}<br/> {{comment.body}}
+                      <a href="#">{{comment.user.full_name}}</a> — <span class="item-date">{{comment.formatted_date}}</span><br/> {{comment.body}}
                     </div>
                   </td>
                 </tr>
               </table>
             </div>
+          {{else}}
+            <p class="no-comments">No existen aportaciones</p>
           {{/each}}
           {{#if currentUserSupportThis}}
             <div class="post-single-comment-form">
@@ -81,8 +83,7 @@
                   <td class="post-index-picture"><img src={{response.user.picture_url}} title={{response.user.full_name}} class="img-circle"></td>
                   <td>
                     <div class="post-single-response-author">
-                      <a href="#">{{response.user.full_name}}</a><br/>
-                      {{response.formatted_date}}
+                      <a href="#">{{response.user.full_name}}</a> — <span class="item-date">{{response.formatted_date}}</span>
                     </div>
                     <div class="post-single-response-body">
                       {{response.body}}

@@ -243,7 +243,7 @@ body { padding-top: 90px; background: #eff0f1; }
   border-top: 1px solid #f0f0f0;
   text-transform: uppercase;
   color: #7f94a9;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .post-single-response table tr td {
@@ -363,4 +363,14 @@ body { padding-top: 90px; background: #eff0f1; }
 
 #reassign-box {
   display: none;
+}
+
+.no-comments {
+  color: #666;
+  font-size: 70%;
+}
+
+.item-date {
+  color: #666;
+  font-size: 80%; 
 }
