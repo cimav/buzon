@@ -355,7 +355,12 @@ body { padding-top: 90px; background: #eff0f1; }
   margin: 1em 0;
 }
 
-.close-post-link {
-  font-size: 80%;
+.reassign-link, .close-reassign-link {
+  font-size: 70%;
   cursor: pointer;
+  float: right;
+}
+
+#reassign-box {
+  display: none;
 }

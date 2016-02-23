@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
+  new_group: null,
   OPEN: 1,
   CLOSED: 2,
 
@@ -10,7 +11,7 @@ export default Ember.Controller.extend({
       return false;
     }
     return this.get('model.group.user_id') == this.get('session.account.content.id'); 
-  }.property('session.account', 'model.group'),
+  }.property('session.account', 'model.group', 'model.status'),
 
   currentUserSupportThis: function() {
     if (this.get('model.status') == this.CLOSED) {
@@ -18,7 +19,7 @@ export default Ember.Controller.extend({
     }
     return this.get('model.user.id') == this.get('session.account.content.id') ||
            this.get('model.users').contains(this.get('session.account.content'));
-  }.property('session.account', 'model.users'),
+  }.property('session.account', 'model.users', 'model.status'),
   
   showComments: function() {
     return this.get('model.user.id') == this.get('session.account.content.id') ||
@@ -53,7 +54,7 @@ export default Ember.Controller.extend({
     }
   },
 
-  addNewResponse: function() {
+  addNewResponse: function(close_post) {
     var response = this.get('newResponse');
     var self = this;
     if (!this.validateResponse()) {
@@ -61,7 +62,7 @@ export default Ember.Controller.extend({
     }
     response.set('user', this.get('session.account.content'));
     response.set('post', this.get('model'));
-    
+
     response.save().then(
       function(nc) {
         self.set('newResponse', self.store.createRecord('response'));
@@ -71,23 +72,41 @@ export default Ember.Controller.extend({
         alert('Error al agregar nueva respuesta');
       }
     );
+
+    if (close_post) {
+      this.closePost();
+    }
   },
 
   closePost: function() {
     var post = this.get('model');
+    var response = this.get('newResponse');
     var self = this;
-    post.status = this.CLOSED;
+
+    post.set('status', this.CLOSED);
+
     post.save().then(
       function(p) {
         self.get('model').reload();
       },
       function(p) {
-        alert('Error al agregar cerrar');
+        alert('Error al cerrar');
       }
     );
-    alert(this.CLOSED);
+
+    response.set('user', self.get('session.account.content'));
+    response.set('post', self.get('model'));
+    response.set('body', 'Se ha cerrado la ' + self.get('model.post_type'));
+    response.save().then(
+      function(nc) {
+        self.set('newResponse', self.store.createRecord('response'));
+      },
+      function(nc) {
+        alert('Error al agregar comentario de cierre');
+      }
+    );
   },
-  
+
   actions: {
     support: function() {
       var self = this;
@@ -130,6 +149,51 @@ export default Ember.Controller.extend({
         function(nc) {
           self.set('newComment', self.store.createRecord('comment'));
           self.get('model').reload();
+        },
+        function(nc) {
+          alert('Error al agregar nuevo comentario');
+        }
+      );
+    },
+
+    openReassignBox: function() {
+      $('#answer-box').fadeOut(500,  function() { $('#reassign-box').fadeIn(); });
+    },
+
+    closeReassignBox: function() {
+      $('#reassign-box').fadeOut(500,  function() { $('#answer-box').fadeIn(); });
+    },
+
+    selectReassignGroup: function(value, component) {
+      this.set('new_group', value);
+    },
+
+    reassignPost: function() {
+      var post = this.get('model');
+      var response = this.get('newResponse');
+      var self = this;
+
+      if(this.new_group == "0") {
+        $('#error-no-grupo').fadeIn();
+        return false;
+      }
+
+      post.set('group', this.new_group);
+      
+      post.save().then(
+        function(p) {
+          self.get('model').reload();
+        },
+        function(p) {
+          alert('Error al reasignar');
+        }
+      );
+      response.set('user', self.get('session.account.content'));
+      response.set('post', self.get('model'));
+      response.set('body', 'Se reasignó de "' + self.get('model.group.name') + '" a "' + self.get('new_group.name') + '"')
+      response.save().then(
+        function(nc) {
+          self.set('newResponse', self.store.createRecord('response'));
         },
         function(nc) {
           alert('Error al agregar nuevo comentario');

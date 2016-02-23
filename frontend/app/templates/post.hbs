@@ -95,29 +95,45 @@
         {{/if}}
 
         {{#if currentUserCanAnswerThis}}
-          <h2>Responder la {{content.post_type}}</h2>
-          <div class="post-single-comment-form">
-            <table class="table">
-              <tr>
-                <td class="post-index-picture"><img src={{session.account.picture_url}} class="img-circle"></td>
-                <td style="width: 96%;">
-                  {{textarea value=newResponse.body rows="3" classNames="form-control"}}<br/>
-                  <div id="error-no-respuesta" class="alert alert-danger" role="alert">Es necesario escribir tu respuesta</div>
+          <div id="answer-box">
+            <h2>Responder la {{content.post_type}}</h2>
+            <div class="post-single-comment-form">
+              <table class="table">
+                <tr>
+                  <td class="post-index-picture"><img src={{session.account.picture_url}} class="img-circle"></td>
+                  <td style="width: 96%;">
+                    {{textarea value=newResponse.body rows="3" classNames="form-control"}}<br/>
+                    <div id="error-no-respuesta" class="alert alert-danger" role="alert">Es necesario escribir tu respuesta</div>
 
-                  <div class="btn-group text-right">
-                    <button type="button" class="btn btn-success"  {{action 'addNewResponse'}}>Enviar respuesta</button>
-                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="caret"></span>
-                      <span class="sr-only">Enviar respuesta</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a href="#"  {{action 'addNewResponseAndClose'}}>Enviar respuesta y cerrar {{content.post_type}}</a></li>
-                    </ul>
-                  </div>
-
-                </td>
-              </tr>
-            </table>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-success"  {{action 'addNewResponse'}}>Enviar respuesta</button>
+                      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Enviar respuesta</span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="#"  {{action 'addNewResponseAndClose'}}>Enviar respuesta y cerrar {{content.post_type}}</a></li>
+                      </ul>
+                    </div>
+                    <a class="reassign-link" href="#" {{action 'openReassignBox'}}>Reasignar esta {{content.post_type}}</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div id="reassign-box">     
+            <h2>Reasignar la {{content.post_type}}</h2>
+            {{#x-select action="selectReassignGroup" id="reassign-group-select" class="form-control"}}
+              {{#x-option value="0"}}Selecciona un grupo{{/x-option}}
+              {{#each groups as |g|}}
+                {{#x-option value=g}}
+                  {{g.name}}
+                {{/x-option}}
+              {{/each}}
+            {{/x-select}}
+            <br/>
+            <button class="btn btn-success text-right" {{action 'reassignPost'}}>Reasignar {{content.post_type}}</button>
+            <a class="close-reassign-link" href="#" {{action 'closeReassignBox'}}>Cancelar</a>
           </div>
         {{/if}}
        

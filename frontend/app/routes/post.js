@@ -14,5 +14,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     this._super(controller, model);
     controller.set('newComment', this.store.createRecord('comment'));
     controller.set('newResponse', this.store.createRecord('response'));
+    controller.set('groups', this.store.findAll('group'));
   }
 });
