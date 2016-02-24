@@ -1,0 +1,12 @@
+<div style="border-bottom: 1px solid #ddd; margin-bottom: 1em; padding-bottom: 1em;">
+<img src="<%= @post.user.image_url %>" style="width: 64px; height: 64px; float: right; border-radius: 50em; -webkit-border-radius: 50em; -moz-border-radius: 50em;" />
+<h3><%= @post.subject %></h3>
+<p>Respuesta por: <strong><%= @post.group.user.first_name %> <%= @post.group.user.last_name %></strong><br/>
+De: <strong><%= @post.group.name %></strong></p>
+</div>
+
+<%= simple_format(@response.body) %>
+
+<p style="border: 1px solid #ddd; background-color: #fafafa; padding: 1em; margin: 2em 0;">
+Mas detalles en la siguiente liga: <a href="http://localhost:9000/<%= @post.id %>">http://localhost:9000/<%= @post.id %></a>.
+</p>

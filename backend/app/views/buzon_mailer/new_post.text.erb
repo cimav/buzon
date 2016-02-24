@@ -1,0 +1,8 @@
+<%= @post.subject %>
+
+Escrito por: <%= @post.user.first_name %> <%= @post.user.last_name %>
+Dirigido a: <%= @post.group.name %>
+
+<%= @post.body %>
+
+Contesta esta <%= @post.post_type %> en la siguiente liga: http://localhost:9000/<%= @post.id %>

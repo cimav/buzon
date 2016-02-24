@@ -11,7 +11,13 @@ class ResponsesController < ApplicationController
   end
 
   def create
-    render json: Response.create(response_params)
+    @response = Response.create(response_params)
+    if @response 
+      BuzonMailer.new_response(@response).deliver_later
+      render json: @response
+    else
+      render json: @response.errors, status: :unprocessable_entity
+    end
   end
 
   private

@@ -1,0 +1,9 @@
+<%= @post.subject %>
+Respuesta por: <%= @post.group.user.first_name %> <%= @post.group.user.last_name %>
+De: <%= @post.group.name %>
+
+<%= @response.body %>
+
+
+
+Mas detalles en la siguiente liga: http://localhost:9000/<%= @post.id %>

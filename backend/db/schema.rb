@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013150716) do
+ActiveRecord::Schema.define(version: 20160224225653) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "post_id",    limit: 4
@@ -77,8 +77,9 @@ ActiveRecord::Schema.define(version: 20151013150716) do
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "status",     limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "is_admin",   limit: 4,   default: 0
   end
 
   add_index "users", ["group_id"], name: "index_users_on_group_id", using: :btree

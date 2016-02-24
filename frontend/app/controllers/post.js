@@ -56,6 +56,7 @@ export default Ember.Controller.extend({
 
   addNewResponse: function(close_post) {
     var response = this.get('newResponse');
+    var post = this.get('model');
     var self = this;
     if (!this.validateResponse()) {
       return false;
@@ -74,7 +75,16 @@ export default Ember.Controller.extend({
     );
 
     if (close_post) {
-      this.closePost();
+      post.set('status', this.CLOSED);
+
+      post.save().then(
+        function(p) {
+          self.get('model').reload();
+        },
+        function(p) {
+          alert('Error al cerrar');
+        }
+      );
     }
   },
 

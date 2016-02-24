@@ -8,7 +8,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    render json: Post.create(post_params)
+    @post = Post.create(post_params)
+    if @post 
+      BuzonMailer.new_post(@post).deliver_later
+      render json: @post
+    else
+      render json: @post.errors, status: :unprocessable_entity
+    end
   end
 
   def show
