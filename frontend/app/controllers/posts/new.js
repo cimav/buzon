@@ -56,6 +56,8 @@ export default Ember.Controller.extend({
     addNewPost: function() {
       var post = this.get('model');
       var self = this;
+      var old_html_button = $('#add-new-button').html();
+
       post.set('user', this.get('session.account.content'));
 
       if (!this.validateAll()) {
@@ -63,13 +65,20 @@ export default Ember.Controller.extend({
         return false;
       }
 
+      $('#add-new-button').html('Enviando...');
+      $('#add-new-button').prop( "disabled", true);
+
       post.save().then(
         function(np) {
           self.transitionTo('post', np.id);
           self.get('model').reload();
+          $('#add-new-button').html(old_html_button);
+          $('#add-new-button').prop( "disabled", false);
         },
         function(np) {
           alert('Error al agregar nueva');
+          $('#add-new-button').html(old_html_button);
+          $('#add-new-button').prop( "disabled", false);
         }
       );
     }
