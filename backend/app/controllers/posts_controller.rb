@@ -27,7 +27,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    render json: Post.find(params[:id]).tap { |b| b.update_attributes(post_params) }
+    @post = Post.find(params[:id])
+    if params[:post][:group_id] != @post.group_id
+      @new_group = Group.find(params[:post][:group_id])
+      BuzonMailer.reassign_post(@post, @new_group).deliver_later
+    end
+    render json: @post.update_attributes(post_params)
   end
 
   private

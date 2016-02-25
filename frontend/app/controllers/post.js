@@ -188,6 +188,19 @@ export default Ember.Controller.extend({
         return false;
       }
 
+      response.set('user', self.get('session.account.content'));
+      response.set('post', self.get('model'));
+      response.set('body', 'Se reasignó de "' + self.get('model.group.name') + '" a "' + self.get('new_group.name') + '"')
+      response.save().then(
+        function(nc) {
+          self.set('newResponse', self.store.createRecord('response'));
+          $('#reassign-box').fadeOut(500,  function() { $('#answer-box').fadeIn(); });
+        },
+        function(nc) {
+          alert('Error al agregar nuevo comentario');
+        }
+      );
+
       post.set('group', this.new_group);
       
       post.save().then(
@@ -198,17 +211,7 @@ export default Ember.Controller.extend({
           alert('Error al reasignar');
         }
       );
-      response.set('user', self.get('session.account.content'));
-      response.set('post', self.get('model'));
-      response.set('body', 'Se reasignó de "' + self.get('model.group.name') + '" a "' + self.get('new_group.name') + '"')
-      response.save().then(
-        function(nc) {
-          self.set('newResponse', self.store.createRecord('response'));
-        },
-        function(nc) {
-          alert('Error al agregar nuevo comentario');
-        }
-      );
+      
     }
   }
 });

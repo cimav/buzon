@@ -1,0 +1,7 @@
+<%= @post.subject %>
+Escrito por: <%= @post.user.first_name %> <%= @post.user.last_name %>
+Reasignado a: <%= @new_group.name %> por: <%= @post.group.name %>
+
+<%= simple_format(@post.body) %>
+
+Contesta esta <%= @post.post_type %> en la siguiente liga: http://buzon.cimav.edu.mx/<%= @post.id %>
