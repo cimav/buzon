@@ -5,6 +5,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(RouteMixin, AuthenticatedRouteMixin, {
   perPage: 20,
   model: function(params) {
+    params['user_id'] = this.get('session.account.content.id');
     return this.findPaged('post',params);
   }
 });

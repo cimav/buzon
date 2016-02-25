@@ -2,8 +2,13 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
+    user = User.find(params[:user_id])
     page = (params[:page] || 1).to_i
-    posts = Post.order('id desc').page(page).per(10)
+    if (user.is_admin?)
+      posts = Post.order('id desc').page(page).per(10)
+    else
+      posts = Post.where("post_type <> 'denuncia'").order('id desc').page(page).per(10)
+    end
     render json: posts, meta: {total_pages: posts.total_pages}
   end
 

@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   // setup our query params
-  queryParams: ["page", "perPage"],
+  queryParams: ["page", "perPage", "user_id"],
 
   // binding the property on the paged array
   // to the query params on the controller
@@ -14,6 +14,7 @@ export default Ember.Controller.extend({
   // set default values, can cause problems if left out
   // if value matches default, it won't display in the URL
   page: 1,
-  perPage: 10
+  perPage: 10,
+  user_id: 0
 
 });
