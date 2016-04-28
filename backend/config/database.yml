@@ -15,10 +15,10 @@ default: &default
   pool: 5
   username: root
   password:
-  socket: /tmp/mysql.sock
 
 development:
   <<: *default
+  socket: /tmp/mysql.sock
   database: buzon_development
 
 # Warning: The database defined as "test" will be erased and
@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: buzon_production
-  username: buzon
-  password: <%= ENV['API_DATABASE_PASSWORD'] %>
+  username: root
+  password: 
