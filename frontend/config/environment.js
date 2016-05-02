@@ -22,9 +22,10 @@ module.exports = function(environment) {
       //sessionServiceName: 'session:custom',
       providers: {
         'google-token': {
-          apiKey: '872734752962-j2d4eu8meom5d3on75qc1ld2svr4i73j.apps.googleusercontent.com',
+          apiKey: '872734752962-432svac1f3i0mghtv9cpvs7ct0duioc3.apps.googleusercontent.com',
           scope: 'email',
-          redirectUri: 'http://localhost:9000'
+          // redirectUri: 'http://localhost:9000'
+          redirectUri: 'http://sugerencias.cimav.edu.mx'
         }
       }
     }

@@ -12,7 +12,7 @@ export default Torii.extend({
     return new RSVP.Promise((resolve, reject) => {
       this._super(...arguments).then((data) => {
         raw({
-          url:      'http://localhost:3000/users',
+          url:      'http://sugerencias.cimav.edu.mx/users',
           type:     'GET',
           dataType: 'json',
           data:     { 'email': data.userEmail }

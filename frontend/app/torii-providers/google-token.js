@@ -20,7 +20,7 @@ var GoogleToken = Oauth2Bearer.extend({
   state: configurable('state', 'STATE'),
 
   redirectUri: configurable('redirectUri',
-                            'http://localhost:3000/oauth2callback'),
+                            'http://sugerencias.cimav.edu.mx/oauth2callback'),
 
   open: function(){
     var name        = this.get('name'),

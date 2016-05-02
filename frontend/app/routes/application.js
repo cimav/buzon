@@ -12,6 +12,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.get('session').authenticate('authenticator:torii', 'google-token').then(function(){
         console.log('Logged in');
       }, function(error){
+         alert(JSON.stringify(error, null, 4));
          alert('Error al iniciar sesión: ' + error.message);
       });
       return;
