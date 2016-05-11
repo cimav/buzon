@@ -45,3 +45,5 @@ end
 gem 'rack-cors'
 gem 'active_model_serializers'
 gem 'kaminari'
+
+gem 'ember-cli-rails'

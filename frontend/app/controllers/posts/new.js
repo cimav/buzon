@@ -70,7 +70,7 @@ export default Ember.Controller.extend({
 
       post.save().then(
         function(np) {
-          self.transitionTo('post', np.id);
+          self.transitionToRoute('post', np.id);
           self.get('model').reload();
           $('#add-new-button').html(old_html_button);
           $('#add-new-button').prop( "disabled", false);

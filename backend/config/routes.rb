@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :responses
   resources :comments
   resources :supporters
+  mount_ember_app :frontend, to: "/"
 end

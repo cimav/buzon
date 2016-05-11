@@ -63,6 +63,10 @@ module.exports = function(environment) {
     routeIfAlreadyAuthenticated: 'posts'
   };
 
+  ENV.contentSecurityPolicy = {
+    'connect-src': "'self' http://sugerencias.cimav.edu.mx"
+  }
+
 
   return ENV;
 };
