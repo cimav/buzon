@@ -13,7 +13,7 @@
         </table>
       </div>
       <div class="col-sm-2 post-single-counter">
-        <span class="glyphicon glyphicon-heart"></span>
+        <span class="glyphicon glyphicon-user"></span>
         <span title="Apoyan esta {{content.post_type}}">{{content.supporters_count}}</span>
       </div>
       <div class="col-sm-2 post-single-counter">
@@ -23,7 +23,6 @@
     </div>
     <div class="row post-single-workarea">
       <div class="col-sm-8 post-single-main">
-        <span class="post-id">{{content.id}}</span><span class="post-type {{content.post_type}}">{{content.post_type}}</span>{{#if isClosed}}<span class="post-closed"><span class="glyphicon glyphicon-ok"></span></span>{{/if}}
         
         <h1 class="post-single-title">{{content.subject}}</h1>
         <div class="post-single-group">Dirigido a: {{content.group.name}}</div>
@@ -141,6 +140,9 @@
         
       </div>
       <div class="col-sm-4 post-single-sidebar">
+         <div class="post-type-space">
+           <span class="post-type {{content.post_type}}">{{content.post_type}}</span>{{#if isClosed}}<span class="post-closed"><span class="glyphicon glyphicon-ok"></span></span>{{/if}}
+        </div>
         {{#unless currentUserSupportThis}}
           {{#unless isClosed}}
             <button class="btn btn-block support-btn" {{action 'support'}}>Deseo apoyar esta {{content.post_type}}</button>
@@ -164,4 +166,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div style="text-align: center;">
+{{#link-to 'posts' classNames="single-back"}}Regresar{{/link-to}}
 </div>

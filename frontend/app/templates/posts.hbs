@@ -3,12 +3,22 @@
     {{#each content as |item|}}
       <div class="row post-index-item">
         <div class="col-sm-8 post-index-content">
-          <span class="post-id">{{item.id}}</span><span class="post-type {{item.post_type}}">{{item.post_type}}</span>{{#if isClosed}}<span class="post-closed"><span class="glyphicon glyphicon-ok"></span></span>{{/if}}
-          {{#link-to 'post' item tagName="div" classNames="post-index-data"}}
+          <div class="post-index-author">
+            <table>
+              <tr>
+                <td class="post-index-picture"><img src={{item.user.picture_url}} title={{item.user.full_name}} class="img-circle"></td>
+                <td>
+                  <a href="#">{{item.user.full_name}}</a><br/>
+                  {{item.formatted_date}}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="post-index-data">
             <h2 class="post-index-title">{{item.subject}}</h2>
             <div class="post-index-group">Dirigido a: {{item.group.name}}</div>
             <div class="post-index-body">{{item.body}}</div>
-          {{/link-to}}
+          </div>
           {{#if item.responses}}
             <div class="post-index-responses">
               <h3>Respuestas</h3>
@@ -33,16 +43,8 @@
           {{/if}}
         </div>
         <div class="col-sm-4 post-index-extra">
-          <div class="post-index-author">
-            <table>
-              <tr>
-                <td class="post-index-picture"><img src={{item.user.picture_url}} title={{item.user.full_name}} class="img-circle"></td>
-                <td>
-                  <a href="#">{{item.user.full_name}}</a><br/>
-                  {{item.formatted_date}}
-                </td>
-              </tr>
-            </table>
+          <div class="post-type-space">
+            <span class="post-type {{item.post_type}}">{{item.post_type}}</span>{{#if isClosed}}<span class="post-closed"><span class="glyphicon glyphicon-ok"></span></span>{{/if}}
           </div>
           {{#if item.users}}
             <div class="post-index-supporters">
@@ -53,10 +55,14 @@
             </div>
           {{/if}}
 
-            <div class="post-index-comments-title"><span class="glyphicon glyphicon-comment"></span> {{item.comments_count}} aportaciones</div>
-          
+            <div class="post-index-comments-title"><span class="glyphicon glyphicon-comment"></span> {{item.comments_count}} aportaciones</div> 
         </div>
         <div class="clearfix"></div>
+        <div class="post-index-button-area"> 
+          {{#link-to 'post' item tagName="button" classNames="post-index-button btn btn-default"}}
+            Ver {{item.post_type}}
+          {{/link-to}}
+        </div>
       </div>
     {{/each}}
   </div>
